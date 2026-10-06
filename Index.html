@@ -1,0 +1,2485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CoinJet | Modern Crypto Platform</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  >
+
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #ffffff;
+      color: #101828;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    :root {
+      --primary: #f7931a;
+      --primary-dark: #df7600;
+      --dark: #101828;
+      --dark-2: #182230;
+      --text: #475467;
+      --muted: #667085;
+      --light: #f8fafc;
+      --border: #eaecf0;
+      --white: #ffffff;
+      --green: #12b76a;
+      --red: #f04438;
+      --shadow: 0 20px 50px rgba(16, 24, 40, 0.08);
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+
+    /* =========================================================
+       TOP BAR
+    ========================================================= */
+
+    .topbar {
+      background: #111827;
+      color: #d0d5dd;
+      font-size: 13px;
+    }
+
+    .topbar-inner {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .topbar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topbar-item i {
+      color: var(--primary);
+    }
+
+    .topbar a:hover {
+      color: white;
+    }
+
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(234, 236, 240, 0.8);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #ffb547, #f7931a);
+      color: white;
+      box-shadow: 0 10px 25px rgba(247, 147, 26, 0.25);
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: #344054;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -9px;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .login-btn {
+      padding: 11px 17px;
+      border-radius: 9px;
+      color: #344054;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #f2f4f7;
+    }
+
+    .signup-btn {
+      background: var(--dark);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .signup-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(247, 147, 26, 0.25);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(247, 147, 26, 0.15), transparent 30%),
+        radial-gradient(circle at 10% 80%, rgba(247, 147, 26, 0.08), transparent 25%),
+        #0b1220;
+      color: white;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 70px;
+      padding: 90px 0;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid rgba(247, 147, 26, 0.35);
+      border-radius: 50px;
+      background: rgba(247, 147, 26, 0.08);
+      color: #ffb547;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .hero-badge i {
+      font-size: 11px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 6vw, 76px);
+      line-height: 1.02;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero-description {
+      color: #98a2b3;
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 590px;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 22px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #ff9d2e;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(247, 147, 26, 0.3);
+    }
+
+    .btn-outline {
+      border: 1px solid #344054;
+      color: white;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+
+    /* =========================================================
+       HERO CRYPTO CARD
+    ========================================================= */
+
+    .hero-visual {
+      position: relative;
+      min-height: 450px;
+      display: grid;
+      place-items: center;
+    }
+
+    .coin-glow {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: rgba(247, 147, 26, 0.13);
+      filter: blur(30px);
+    }
+
+    .bitcoin-coin {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 30% 25%, #ffd58a, #f7931a 45%, #a94d00);
+      border: 8px solid rgba(255,255,255,0.12);
+      box-shadow:
+        0 0 0 20px rgba(247,147,26,0.05),
+        0 35px 80px rgba(0,0,0,0.45);
+      animation: floatCoin 5s ease-in-out infinite;
+    }
+
+    .bitcoin-coin i {
+      font-size: 115px;
+      color: white;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.25));
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(18, 27, 42, 0.88);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(15px);
+      border-radius: 14px;
+      padding: 17px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .floating-card.top {
+      top: 20px;
+      right: 0;
+    }
+
+    .floating-card.bottom {
+      bottom: 15px;
+      left: 0;
+    }
+
+    .coin-name {
+      color: #98a2b3;
+      font-size: 11px;
+      margin-bottom: 7px;
+    }
+
+    .coin-price {
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .coin-change {
+      color: #32d583;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    @keyframes floatCoin {
+      0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-18px) rotate(2deg);
+      }
+    }
+
+
+    /* =========================================================
+       MARKET BAR
+    ========================================================= */
+
+    .market-section {
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .market-item {
+      padding: 22px 25px;
+      border-right: 1px solid var(--border);
+    }
+
+    .market-item:last-child {
+      border-right: 0;
+    }
+
+    .market-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .market-name {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .market-symbol {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .market-price {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .positive {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       SECTION
+    ========================================================= */
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-header {
+      max-width: 650px;
+      margin: 0 auto 55px;
+      text-align: center;
+    }
+
+    .section-label {
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 45px);
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    .about {
+      background: #f8fafc;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-badge {
+      position: absolute;
+      right: -25px;
+      bottom: 25px;
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-badge strong {
+      display: block;
+      font-size: 28px;
+      color: var(--primary);
+    }
+
+    .about-content .section-label {
+      text-align: left;
+    }
+
+    .about-content h2 {
+      font-size: 44px;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 13px;
+      margin: 25px 0 30px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #344054;
+      font-weight: 600;
+    }
+
+    .check-list i {
+      color: var(--green);
+    }
+
+
+    /* =========================================================
+       FEATURES
+    ========================================================= */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      position: relative;
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: white;
+      transition: 0.35s ease;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: rgba(247, 147, 26, 0.08);
+      border-radius: 50%;
+      top: -60px;
+      right: -60px;
+      transition: 0.35s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(247, 147, 26, 0.35);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card:hover::before {
+      transform: scale(1.6);
+    }
+
+    .feature-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: #fff3e6;
+      color: var(--primary);
+      font-size: 22px;
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 12px;
+      font-size: 19px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+
+    /* =========================================================
+       HOW IT WORKS
+    ========================================================= */
+
+    .how {
+      background: #f8fafc;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      position: relative;
+    }
+
+    .step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 35px;
+      position: relative;
+      transition: 0.3s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    .step h3 {
+      margin-bottom: 12px;
+    }
+
+    .step p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+
+    /* =========================================================
+       TEAM
+    ========================================================= */
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .team-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+      transition: 0.35s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .team-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-image img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .team-card:hover .team-image img {
+      transform: scale(1.06);
+    }
+
+    .team-info {
+      padding: 23px;
+    }
+
+    .team-info h3 {
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .team-role {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .team-social {
+      display: flex;
+      gap: 8px;
+      margin-top: 17px;
+    }
+
+    .team-social a {
+      width: 33px;
+      height: 33px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #f2f4f7;
+      color: #667085;
+      transition: 0.3s;
+    }
+
+    .team-social a:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+
+    /* =========================================================
+       STATS
+    ========================================================= */
+
+    .stats {
+      position: relative;
+      background:
+        linear-gradient(rgba(11,18,32,0.92), rgba(11,18,32,0.92)),
+        url("https://cdn.pixabay.com/photo/2017/01/25/12/31/bitcoin-2007769_960_720.jpg")
+        center/cover;
+      color: white;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 20px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--primary);
+      font-size: 45px;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: #98a2b3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+
+    /* =========================================================
+       NEWS
+    ========================================================= */
+
+    .news {
+      background: #f8fafc;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .news-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: 0.35s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .news-image {
+      overflow: hidden;
+    }
+
+    .news-image img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .news-card:hover .news-image img {
+      transform: scale(1.06);
+    }
+
+    .news-content {
+      padding: 25px;
+    }
+
+    .news-meta {
+      display: flex;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 13px;
+    }
+
+    .news-meta i {
+      color: var(--primary);
+      margin-right: 5px;
+    }
+
+    .news-content h3 {
+      font-size: 19px;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .news-content p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .read-more {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+
+    .cta {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .cta-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 25px;
+      padding: 65px;
+      background: #101828;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .cta-box::after {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: rgba(247,147,26,0.12);
+      right: -100px;
+      top: -180px;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-content h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .cta-content p {
+      color: #98a2b3;
+      max-width: 570px;
+      line-height: 1.7;
+    }
+
+    .cta .btn {
+      position: relative;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      background: #0b1220;
+      color: white;
+      padding-top: 75px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 55px;
+      padding-bottom: 55px;
+    }
+
+    .footer-brand p {
+      color: #98a2b3;
+      line-height: 1.8;
+      font-size: 14px;
+      max-width: 330px;
+      margin: 20px 0;
+    }
+
+    .footer-title {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: #98a2b3;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .newsletter {
+      display: flex;
+      border: 1px solid #344054;
+      border-radius: 9px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .newsletter input {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 13px;
+      background: transparent;
+      color: white;
+    }
+
+    .newsletter button {
+      border: none;
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      cursor: pointer;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #182230;
+      color: #98a2b3;
+      transition: 0.3s;
+    }
+
+    .footer-social a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1d2939;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #667085;
+      font-size: 12px;
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 1000px) {
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content {
+        margin: auto;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-content {
+        text-align: center;
+      }
+
+      .about-content .section-label {
+        text-align: center;
+      }
+
+      .check-list {
+        justify-content: center;
+        text-align: left;
+      }
+
+      .features-grid,
+      .team-grid,
+      .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+
+    @media (max-width: 760px) {
+
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .topbar {
+        display: none;
+      }
+
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        padding: 75px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .bitcoin-coin {
+        width: 200px;
+        height: 200px;
+      }
+
+      .bitcoin-coin i {
+        font-size: 85px;
+      }
+
+      .floating-card.top {
+        right: 0;
+      }
+
+      .floating-card.bottom {
+        left: 0;
+      }
+
+      .market-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .market-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .market-item:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .features-grid,
+      .steps,
+      .team-grid,
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .cta-box {
+        padding: 40px 25px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-content h2 {
+        font-size: 30px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+
+    @media (max-width: 480px) {
+
+      .hero h1 {
+        font-size: 43px;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .floating-card {
+        padding: 12px;
+      }
+
+      .about-content h2 {
+        font-size: 34px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- =======================================================
+       TOP BAR
+  ======================================================== -->
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+
+      <div class="topbar-left">
+
+        <div class="topbar-item">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:muhammmadali730@gmail.com">
+            muhammmadali730@gmail.com
+          </a>
+        </div>
+
+        <div class="topbar-item">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+9234567890">
+            +92 345 67890
+          </a>
+        </div>
+
+      </div>
+
+      <div class="topbar-right">
+
+        <span>
+          <i class="fa-solid fa-user"></i>
+          Login
+        </span>
+
+        <span>
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Sign Up
+        </span>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =======================================================
+       NAVBAR
+  ======================================================== -->
+
+  <header class="navbar">
+
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+
+        <div class="logo-icon">
+          <i class="fa-brands fa-bitcoin"></i>
+        </div>
+
+        Coin<span>Jet</span>
+
+      </a>
+
+
+      <nav class="nav-links">
+
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#team">Experts</a>
+        <a href="#news">News</a>
+
+      </nav>
+
+
+      <div class="nav-actions">
+
+        <a href="#" class="login-btn">
+          Login
+        </a>
+
+        <a href="#" class="signup-btn">
+          Get Started
+        </a>
+
+      </div>
+
+
+      <button class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="container hero-inner">
+
+        <div class="hero-content reveal">
+
+          <div class="hero-badge">
+            <i class="fa-solid fa-circle"></i>
+            The future of digital finance
+          </div>
+
+          <h1>
+            Invest in the
+            <span>future</span>
+            of crypto.
+          </h1>
+
+          <p class="hero-description">
+            Buy, sell and manage your digital assets with a secure,
+            simple and powerful crypto platform built for modern investors.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a href="#features" class="btn btn-primary">
+              Start Investing
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a href="#how" class="btn btn-outline">
+              Explore Platform
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual reveal">
+
+          <div class="coin-glow"></div>
+
+          <div class="bitcoin-coin">
+            <i class="fa-brands fa-bitcoin"></i>
+          </div>
+
+
+          <div class="floating-card top">
+
+            <div class="coin-name">
+              Bitcoin / BTC
+            </div>
+
+            <div class="coin-price">
+              $68,245.90
+            </div>
+
+            <div class="coin-change">
+              <i class="fa-solid fa-arrow-up"></i>
+              +8.63%
+            </div>
+
+          </div>
+
+
+          <div class="floating-card bottom">
+
+            <div class="coin-name">
+              Portfolio Balance
+            </div>
+
+            <div class="coin-price">
+              $24,850.32
+            </div>
+
+            <div class="coin-change">
+              +12.42% this month
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MARKET
+    ====================================================== -->
+
+    <section class="market-section">
+
+      <div class="container market-grid">
+
+        <div class="market-item">
+
+          <div class="market-top">
+            <span class="market-name">Bitcoin</span>
+            <span class="market-symbol">BTC</span>
+          </div>
+
+          <div class="market-price">$68,245.90</div>
+          <span class="positive">+8.63%</span>
+
+        </div>
+
+
+        <div class="market-item">
+
+          <div class="market-top">
+            <span class="market-name">Ethereum</span>
+            <span class="market-symbol">ETH</span>
+          </div>
+
+          <div class="market-price">$3,421.70</div>
+          <span class="positive">+5.21%</span>
+
+        </div>
+
+
+        <div class="market-item">
+
+          <div class="market-top">
+            <span class="market-name">Solana</span>
+            <span class="market-symbol">SOL</span>
+          </div>
+
+          <div class="market-price">$184.52</div>
+          <span class="positive">+7.84%</span>
+
+        </div>
+
+
+        <div class="market-item">
+
+          <div class="market-top">
+            <span class="market-name">BNB</span>
+            <span class="market-symbol">BNB</span>
+          </div>
+
+          <div class="market-price">$612.38</div>
+          <span class="positive">+4.92%</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section class="section about" id="about">
+
+      <div class="container about-grid">
+
+        <div class="about-image reveal">
+
+          <img
+            src="https://themesflat.co/html/coinjet/images/page/laptop-1.png"
+            alt="CoinJet Platform"
+          >
+
+          <div class="about-badge">
+            <strong>99.9%</strong>
+            Platform uptime
+          </div>
+
+        </div>
+
+
+        <div class="about-content reveal">
+
+          <div class="section-label">
+            About CoinJet
+          </div>
+
+          <h2>
+            Crypto investing,
+            made simple.
+          </h2>
+
+          <p>
+            CoinJet provides a modern environment for managing digital
+            assets without unnecessary complexity. Our platform combines
+            security, usability and powerful tools for everyday investors.
+          </p>
+
+          <p>
+            Whether you're buying your first Bitcoin or managing a
+            diversified crypto portfolio, CoinJet gives you everything
+            you need in one place.
+          </p>
+
+
+          <ul class="check-list">
+
+            <li>
+              <i class="fa-solid fa-circle-check"></i>
+              Secure asset management
+            </li>
+
+            <li>
+              <i class="fa-solid fa-circle-check"></i>
+              Fast cryptocurrency transactions
+            </li>
+
+            <li>
+              <i class="fa-solid fa-circle-check"></i>
+              Real-time market information
+            </li>
+
+            <li>
+              <i class="fa-solid fa-circle-check"></i>
+              Professional customer support
+            </li>
+
+          </ul>
+
+
+          <a href="#features" class="btn btn-primary">
+            Discover More
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FEATURES
+    ====================================================== -->
+
+    <section class="section" id="features">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            Why Choose Us
+          </div>
+
+          <h2 class="section-title">
+            Everything you need to manage crypto
+          </h2>
+
+          <p class="section-description">
+            Powerful features designed to make digital finance easier,
+            faster and more secure.
+          </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+          <div class="feature-card reveal">
+
+            <div class="feature-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h3>Bank-Level Security</h3>
+
+            <p>
+              Protect your digital assets with advanced security
+              architecture and secure account controls.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card reveal">
+
+            <div class="feature-icon">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+
+            <h3>Mobile Experience</h3>
+
+            <p>
+              Manage your crypto portfolio from anywhere with a
+              clean and responsive mobile-first experience.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card reveal">
+
+            <div class="feature-icon">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <h3>Secure Wallet</h3>
+
+            <p>
+              Keep your assets organized with a powerful digital
+              wallet designed for easy management.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card reveal">
+
+            <div class="feature-icon">
+              <i class="fa-solid fa-file-shield"></i>
+            </div>
+
+            <h3>Asset Protection</h3>
+
+            <p>
+              Multiple protection layers help keep your portfolio
+              safer from unauthorized access.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card reveal">
+
+            <div class="feature-icon">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </div>
+
+            <h3>Instant Exchange</h3>
+
+            <p>
+              Exchange supported digital currencies quickly through
+              a simple and intuitive interface.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card reveal">
+
+            <div class="feature-icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+            <h3>Recurring Buying</h3>
+
+            <p>
+              Build your investment strategy with automated recurring
+              purchases based on your preferred schedule.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HOW IT WORKS
+    ====================================================== -->
+
+    <section class="section how" id="how">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            Simple Process
+          </div>
+
+          <h2 class="section-title">
+            How CoinJet works
+          </h2>
+
+          <p class="section-description">
+            Getting started with crypto doesn't have to be complicated.
+          </p>
+
+        </div>
+
+
+        <div class="steps">
+
+          <div class="step reveal">
+
+            <div class="step-number">
+              01
+            </div>
+
+            <h3>Create Your Account</h3>
+
+            <p>
+              Sign up and create your secure CoinJet account
+              in just a few simple steps.
+            </p>
+
+          </div>
+
+
+          <div class="step reveal">
+
+            <div class="step-number">
+              02
+            </div>
+
+            <h3>Make a Payment</h3>
+
+            <p>
+              Add funds using your preferred supported payment
+              method and prepare to invest.
+            </p>
+
+          </div>
+
+
+          <div class="step reveal">
+
+            <div class="step-number">
+              03
+            </div>
+
+            <h3>Buy or Sell Crypto</h3>
+
+            <p>
+              Choose your digital asset and complete your
+              transaction through the CoinJet platform.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TEAM
+    ====================================================== -->
+
+    <section class="section" id="team">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            Our Experts
+          </div>
+
+          <h2 class="section-title">
+            Meet our crypto specialists
+          </h2>
+
+          <p class="section-description">
+            Our experienced team helps investors understand the
+            rapidly changing digital asset landscape.
+          </p>
+
+        </div>
+
+
+        <div class="team-grid">
+
+          <div class="team-card reveal">
+
+            <div class="team-image">
+              <img
+                src="https://themesflat.co/html/coinjet/images/team/01.jpg"
+                alt="Arnold Palmer"
+              >
+            </div>
+
+            <div class="team-info">
+
+              <h3>Arnold Palmer</h3>
+
+              <div class="team-role">
+                Bitcoin Consultant
+              </div>
+
+              <div class="team-social">
+
+                <a href="#">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="team-card reveal">
+
+            <div class="team-image">
+              <img
+                src="https://themesflat.co/html/coinjet/images/team/02.jpg"
+                alt="Bruno Alves"
+              >
+            </div>
+
+            <div class="team-info">
+
+              <h3>Bruno Alves</h3>
+
+              <div class="team-role">
+                Crypto Consultant
+              </div>
+
+              <div class="team-social">
+
+                <a href="#">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="team-card reveal">
+
+            <div class="team-image">
+              <img
+                src="https://themesflat.co/html/coinjet/images/team/03.jpg"
+                alt="Kelly Brook"
+              >
+            </div>
+
+            <div class="team-info">
+
+              <h3>Kelly Brook</h3>
+
+              <div class="team-role">
+                Blockchain Advisor
+              </div>
+
+              <div class="team-social">
+
+                <a href="#">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATS
+    ====================================================== -->
+
+    <section class="section stats">
+
+      <div class="container">
+
+        <div class="stats-grid">
+
+          <div class="stat reveal">
+            <strong>50+</strong>
+            <span>Projects</span>
+          </div>
+
+          <div class="stat reveal">
+            <strong>70K</strong>
+            <span>Clients</span>
+          </div>
+
+          <div class="stat reveal">
+            <strong>120K</strong>
+            <span>Accounts</span>
+          </div>
+
+          <div class="stat reveal">
+            <strong>220K</strong>
+            <span>Transactions</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NEWS
+    ====================================================== -->
+
+    <section class="section news" id="news">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            News & Events
+          </div>
+
+          <h2 class="section-title">
+            Latest from the crypto world
+          </h2>
+
+          <p class="section-description">
+            Stay updated with cryptocurrency, blockchain and
+            digital finance news.
+          </p>
+
+        </div>
+
+
+        <div class="news-grid">
+
+          <article class="news-card reveal">
+
+            <div class="news-image">
+
+              <img
+                src="https://themesflat.co/html/coinjet/images/blog/post-3-column-01.jpg"
+                alt="Crypto news"
+              >
+
+            </div>
+
+            <div class="news-content">
+
+              <div class="news-meta">
+
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  12 Feb 2026
+                </span>
+
+                <span>
+                  <i class="fa-regular fa-eye"></i>
+                  55
+                </span>
+
+              </div>
+
+              <h3>
+                ICOs Continue to Transform the Digital Finance Market
+              </h3>
+
+              <p>
+                Discover how new blockchain projects and digital
+                assets are shaping the future of finance.
+              </p>
+
+              <a href="#" class="read-more">
+                Read Article →
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <article class="news-card reveal">
+
+            <div class="news-image">
+
+              <img
+                src="https://themesflat.co/html/coinjet/images/blog/post-3-column-10.jpg"
+                alt="Bitcoin payments"
+              >
+
+            </div>
+
+            <div class="news-content">
+
+              <div class="news-meta">
+
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  10 Feb 2026
+                </span>
+
+                <span>
+                  <i class="fa-regular fa-eye"></i>
+                  72
+                </span>
+
+              </div>
+
+              <h3>
+                The Evolution of Bitcoin Payments
+              </h3>
+
+              <p>
+                Explore how cryptocurrency payments are changing
+                the way businesses interact with customers.
+              </p>
+
+              <a href="#" class="read-more">
+                Read Article →
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <article class="news-card reveal">
+
+            <div class="news-image">
+
+              <img
+                src="https://themesflat.co/html/coinjet/images/blog/post-3-column-03.jpg"
+                alt="Bitcoin mining"
+              >
+
+            </div>
+
+            <div class="news-content">
+
+              <div class="news-meta">
+
+                <span>
+                  <i class="fa-regular fa-calendar"></i>
+                  08 Feb 2026
+                </span>
+
+                <span>
+                  <i class="fa-regular fa-eye"></i>
+                  112
+                </span>
+
+              </div>
+
+              <h3>
+                New Technology Is Changing Bitcoin Mining
+              </h3>
+
+              <p>
+                Learn about the latest developments in cryptocurrency
+                infrastructure and mining technology.
+              </p>
+
+              <a href="#" class="read-more">
+                Read Article →
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section class="cta">
+
+      <div class="container">
+
+        <div class="cta-box reveal">
+
+          <div class="cta-content">
+
+            <h2>
+              Ready to enter the crypto world?
+            </h2>
+
+            <p>
+              Create your CoinJet account and start exploring
+              the next generation of digital finance.
+            </p>
+
+          </div>
+
+          <a href="#" class="btn btn-primary">
+            Create Free Account
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+          <a href="#" class="logo">
+
+            <div class="logo-icon">
+              <i class="fa-brands fa-bitcoin"></i>
+            </div>
+
+            Coin<span>Jet</span>
+
+          </a>
+
+          <p>
+            A modern cryptocurrency platform designed to make
+            digital finance simple, secure and accessible.
+          </p>
+
+          <div class="footer-social">
+
+            <a href="#">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="footer-title">
+            Platform
+          </h3>
+
+          <div class="footer-links">
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Services</a>
+            <a href="#how">How It Works</a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="footer-title">
+            Resources
+          </h3>
+
+          <div class="footer-links">
+
+            <a href="#news">Crypto News</a>
+            <a href="#">FAQ</a>
+            <a href="#">Security</a>
+            <a href="#">Privacy Policy</a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="footer-title">
+            Newsletter
+          </h3>
+
+          <p style="color:#98a2b3; font-size:13px; line-height:1.7;">
+            Get the latest crypto news and market updates.
+          </p>
+
+          <form class="newsletter">
+
+            <input
+              type="email"
+              placeholder="Email address"
+              required
+            >
+
+            <button type="submit">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 CoinJet. All rights reserved.
+        </span>
+
+        <span>
+          Built for the future of digital finance.
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+    /* Mobile menu */
+
+    const menuBtn = document.getElementById("menuBtn");
+
+    menuBtn.addEventListener("click", () => {
+
+      alert("Mobile navigation can be connected here.");
+
+    });
+
+
+    /* Scroll reveal */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealOnScroll = () => {
+
+      revealElements.forEach((element) => {
+
+        const windowHeight = window.innerHeight;
+
+        const elementTop = element.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 80) {
+          element.classList.add("active");
+        }
+
+      });
+
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+
+    revealOnScroll();
+
+
+    /* Newsletter */
+
+    const newsletter = document.querySelector(".newsletter");
+
+    newsletter.addEventListener("submit", (event) => {
+
+      event.preventDefault();
+
+      const input = newsletter.querySelector("input");
+
+      if (input.value.trim() !== "") {
+
+        alert("Thank you for subscribing to CoinJet!");
+
+        input.value = "";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
+
